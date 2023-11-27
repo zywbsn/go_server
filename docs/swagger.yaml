@@ -1,0 +1,299 @@
+basePath: /
+host: localhost:9090
+info:
+  contact:
+    email: ooooooooooos@163.com
+    name: silenceLamb
+    url: http://www.swagger.io/support
+  title: 快递代取11 API
+  version: 1.0.1
+paths:
+  /admin/login:
+    post:
+      description: 用户登录接口
+      parameters:
+      - description: username
+        in: formData
+        name: code
+        required: true
+        type: string
+      - description: username
+        in: formData
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 用户登录
+      tags:
+      - 用户
+  /menu/create:
+    post:
+      description: 这是一个新增菜单接口
+      parameters:
+      - description: key
+        in: formData
+        name: key
+        required: true
+        type: string
+      - description: component
+        in: formData
+        name: component
+        required: true
+        type: string
+      - description: label
+        in: formData
+        name: label
+        required: true
+        type: string
+      - description: parent_id
+        in: formData
+        name: parent_id
+        required: true
+        type: string
+      - description: sort
+        in: formData
+        name: sort
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 新增菜单
+      tags:
+      - 菜单
+  /menu/list:
+    get:
+      description: 菜单路由列表接口
+      parameters:
+      - description: page
+        in: query
+        name: page
+        required: true
+        type: string
+      - description: size
+        in: query
+        name: size
+        required: true
+        type: string
+      - description: label
+        in: query
+        name: label
+        type: string
+      - description: key
+        in: query
+        name: key
+        type: string
+      - description: component
+        in: query
+        name: component
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 菜单路由列表
+      tags:
+      - 菜单
+  /upload:
+    post:
+      description: 上传文件接口
+      parameters:
+      - description: 上传的文件
+        in: formData
+        name: file
+        required: true
+        type: string
+      produces:
+      - multipart/form-data
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 上传文件
+      tags:
+      - 上传文件
+  /user/create:
+    post:
+      description: 这是一个新增用户接口
+      parameters:
+      - description: 昵称
+        in: formData
+        name: nickname
+        required: true
+        type: string
+      - description: 账号
+        in: formData
+        name: username
+        required: true
+        type: string
+      - description: 密码
+        in: formData
+        name: password
+        required: true
+        type: string
+      - description: 手机号
+        in: formData
+        name: phone
+        required: true
+        type: string
+      - description: 权限
+        in: formData
+        name: rule
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 新增用户
+      tags:
+      - 用户
+  /user/export:
+    get:
+      description: 用户列表接口
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 导出
+      tags:
+      - 用户
+  /user/info:
+    get:
+      description: 用户详情接口
+      parameters:
+      - description: identity
+        in: query
+        name: identity
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 用户详情
+      tags:
+      - 用户
+    put:
+      description: 修改用户信息接口
+      parameters:
+      - description: 用户 id
+        in: formData
+        name: id
+        required: true
+        type: integer
+      - description: 用户唯一标识
+        in: formData
+        name: identity
+        required: true
+        type: string
+      - description: 昵称
+        in: formData
+        name: nickname
+        required: true
+        type: string
+      - description: 账号
+        in: formData
+        name: username
+        required: true
+        type: string
+      - description: 密码
+        in: formData
+        name: password
+        required: true
+        type: string
+      - description: 手机号
+        in: formData
+        name: phone
+        required: true
+        type: string
+      - description: 权限
+        in: formData
+        name: rule
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 修改用户信息
+      tags:
+      - 用户
+  /user/list:
+    get:
+      description: 用户列表接口
+      parameters:
+      - description: page
+        in: query
+        name: page
+        required: true
+        type: string
+      - description: size
+        in: query
+        name: size
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 用户列表
+      tags:
+      - 用户
+  /user/login:
+    post:
+      description: 用户登录接口
+      parameters:
+      - description: code
+        in: formData
+        name: code
+        required: true
+        type: string
+      - description: 名字
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: 头像
+        in: formData
+        name: avatarUrl
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 用户登录
+swagger: "2.0"

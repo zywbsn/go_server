@@ -1,17 +1,6 @@
-## 快递代取
+## admin
 
 默认端口：9090
-
-### 订单相关接口
-**订单列表：** `/express/list` Get
-
-**订单详情：** `/express/info` Get
-
-**新增订单：** `/express/create` Post
-
-**接单：** `/express/order` Put
-
-**完成：** `/express/finish` Put
 
 ### 用户相关接口
 **用户登录：** `/user/login` Post
@@ -20,6 +9,12 @@
 **用户详情：** `/user/info` Get
 
 **修改用户信息：** `/user/info` Put
+
+**导出用户列表：**`/user/export` Get
+
+### 菜单相关接口
+
+**菜单列表详情：** `/menu/list` Get
 
 ### 公用接口
 **上传文件：** `/upload` Post

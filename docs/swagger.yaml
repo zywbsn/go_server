@@ -5,21 +5,21 @@ info:
     email: ooooooooooos@163.com
     name: silenceLamb
     url: http://www.swagger.io/support
-  title: 快递代取11 API
+  title: Go-server API
   version: 1.0.1
 paths:
-  /admin/login:
+  /login:
     post:
       description: 用户登录接口
       parameters:
       - description: username
         in: formData
-        name: code
+        name: username
         required: true
         type: string
-      - description: username
+      - description: password
         in: formData
-        name: name
+        name: password
         required: true
         type: string
       produces:
@@ -37,29 +37,28 @@ paths:
       description: 这是一个新增菜单接口
       parameters:
       - description: key
-        in: formData
+        in: query
         name: key
         required: true
         type: string
       - description: component
-        in: formData
+        in: query
         name: component
         required: true
         type: string
       - description: label
-        in: formData
+        in: query
         name: label
         required: true
         type: string
       - description: parent_id
-        in: formData
+        in: query
         name: parent_id
         required: true
-        type: string
+        type: integer
       - description: sort
-        in: formData
+        in: query
         name: sort
-        required: true
         type: string
       produces:
       - application/json
@@ -69,6 +68,25 @@ paths:
           schema:
             type: string
       summary: 新增菜单
+      tags:
+      - 菜单
+  /menu/info:
+    get:
+      description: 这是一个新增菜单接口
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 菜单详情
       tags:
       - 菜单
   /menu/list:
@@ -105,6 +123,55 @@ paths:
           schema:
             type: string
       summary: 菜单路由列表
+      tags:
+      - 菜单
+  /menu/update:
+    put:
+      description: 更新菜单信息接口
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: integer
+      - description: key
+        in: query
+        name: key
+        required: true
+        type: string
+      - description: component
+        in: query
+        name: component
+        required: true
+        type: string
+      - description: label
+        in: query
+        name: label
+        required: true
+        type: string
+      - description: parent_id
+        in: query
+        name: parent_id
+        required: true
+        type: integer
+      - description: sort
+        in: query
+        name: sort
+        required: true
+        type: integer
+      - description: icon
+        in: query
+        name: icon
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 更新菜单信息
       tags:
       - 菜单
   /upload:
@@ -168,6 +235,17 @@ paths:
   /user/export:
     get:
       description: 用户列表接口
+      parameters:
+      - description: page
+        in: query
+        name: page
+        required: true
+        type: string
+      - description: size
+        in: query
+        name: size
+        required: true
+        type: string
       produces:
       - application/json
       responses:

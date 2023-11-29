@@ -1,6 +1,6 @@
 package main
 
-// @title 快递代取11 API
+// @title Go-server API
 // @version 1.0.1
 // @contact.name silenceLamb
 // @contact.url http://www.swagger.io/support
@@ -10,18 +10,17 @@ package main
 
 import (
 	"bytes"
-	_ "express-service/docs"
-	"express-service/router"
 	"fmt"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
+	_ "go-server/docs"
+	"go-server/router"
 	"os"
 	"os/exec"
 )
 
 func runCommand() {
 	cmd := exec.Command("swag", "init")
-	fmt.Println("Cmd", cmd.Args)
 	var out bytes.Buffer
 	cmd.Stdout = &out
 	cmd.Stderr = os.Stderr
@@ -29,7 +28,6 @@ func runCommand() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println("String", out.String())
 }
 
 func main() {

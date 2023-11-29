@@ -3,8 +3,10 @@ package helper
 import (
 	"crypto/md5"
 	"crypto/tls"
+	"encoding/json"
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
+	"github.com/gin-gonic/gin"
 	"github.com/jordan-wright/email"
 	uuid "github.com/satori/go.uuid"
 	"math/rand"
@@ -30,6 +32,17 @@ var myKey = []byte("gin-gorm-oj-key")
 
 var DateFormat string = "2006-01-02 15:04:05"
 var DateFormatName string = "2006_01_02_15_04_05"
+
+//处理 post 请求 json 数据
+func PostJson(ctx *gin.Context) map[string]interface{} {
+	//读取row格式请求体数据
+	b, _ := ctx.GetRawData()
+	// 定义map或结构体
+	var JSON map[string]interface{}
+	// 反序列化
+	_ = json.Unmarshal(b, &JSON)
+	return JSON
+}
 
 func GetDate() Date {
 	nowTime := time.Now()
@@ -68,9 +81,11 @@ func SentCode(toUserEmail, code string) error {
 	e.To = []string{toUserEmail}
 	e.Subject = "验证码发送测试"
 	e.HTML = []byte("<h1>您的验证码是：</h1><p>" + code + "</p>")
-	err := e.SendWithTLS("smtp.163.com:465",
+	err := e.SendWithTLS(
+		"smtp.163.com:465",
 		smtp.PlainAuth("", "ooooooooooos@163.com", "CHUZMVVAHNSXVBCL", "smtp.163.com"),
-		&tls.Config{InsecureSkipVerify: true, ServerName: "smtp.163.com"})
+		&tls.Config{InsecureSkipVerify: true, ServerName: "smtp.163.com"},
+	)
 	return err
 }
 
@@ -97,9 +112,11 @@ func GenerateToken(identity string) (string, error) {
 func AnalyseToken(token string) (*UserClaims, error) {
 	tokenString := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGl0eSI6InVzZXJfMSIsIm5hbWUiOiJHZXQifQ.4inO9HZINmKFYO9qEF2SYYPHk0GuuA-qUdwIhUa8USE"
 	userClaims := new(UserClaims)
-	claims, err := jwt.ParseWithClaims(tokenString, userClaims, func(token *jwt.Token) (interface{}, error) {
-		return myKey, nil
-	})
+	claims, err := jwt.ParseWithClaims(
+		tokenString, userClaims, func(token *jwt.Token) (interface{}, error) {
+			return myKey, nil
+		},
+	)
 	if err != nil {
 		return nil, err
 	}
